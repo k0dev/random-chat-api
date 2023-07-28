@@ -1,0 +1,8 @@
+# random-chat-api
+HTTP API based one-to-one chat server, lobby based. Users can enter a random lobby and start chatting or create their own lobby and wait for someone to join.
+Lobbies will auto-delete in a fixed amount of time after their creation.
+
+TODO:
+- chat encryption
+- example client
+- api documentation
