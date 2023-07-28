@@ -15,7 +15,9 @@ def get_lobby_id():
     return current_lobby_id
 
 def delete_lobby_after(lobby_id, s):
+    print("Will delete lobby " + str(lobby_id) + " after " + str(s) + " seconds")
     time.sleep(s)
+    print("Deleting lobby " + str(lobby_id))
     del lobbies[lobby_id]
 
 @app.route("/api/status")
@@ -34,7 +36,7 @@ def create_lobby():
         "messages_a": [],
         "messages_b": []
     }
-    threading.Thread(target=delete_lobby_after, args=(60,))
+    threading.Thread(target=delete_lobby_after, args=(lobby_id,60)).start()
     return jsonify({"id": lobby_id, "secret": lobby_secret_a})
 
 @app.route("/api/lobby_list")
@@ -66,7 +68,6 @@ def send_message(lobby_id):
             abort(404)
         if message is not None and len(message.strip()) > 0:
             messages.append(message)
-            print(lobbies[lobby_id])
             return ""
         else:
             abort(404)
@@ -86,7 +87,6 @@ def read_messages(lobby_id):
             abort(404)
         response = {"messages": messages[:]}
         messages.clear()
-        print(lobbies[lobby_id])
         return jsonify(response)
     else:
         abort(404)
