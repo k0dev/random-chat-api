@@ -5,5 +5,4 @@ Lobbies will auto-delete in a fixed amount of time after their creation.
 Example client: [here](https://github.com/k0dev/random-chat-client)
 
 TODO:
-- chat encryption
 - api documentation
